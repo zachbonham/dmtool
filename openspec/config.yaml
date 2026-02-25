@@ -1,0 +1,28 @@
+schema: spec-driven
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+# Add your tech stack, conventions, style guides, domain knowledge, etc.
+# Example:
+#   context: |
+#     Tech stack: TypeScript, React, Node.js
+#     We use conventional commits
+#     Domain: e-commerce platform
+context: |
+  Tech stack: Nuxt.js, TypeScript, Tailwind CSS
+  Deployment: Supabase
+  Domain: TTRPG campaign survey tool
+  Tabletop RPG campaigns fail — not because the GM is unprepared, but because the table is misaligned. Players show up expecting wildly different things: one wants brutal combat, another wants deep character drama, a third wants an open sandbox. Without a structured way to surface these preferences before session zero, GMs are flying blind.
+
+  The GM Campaign Preference Tool solves this by giving GMs a short, structured player survey that collects preferences, scores them against four campaign archetypes, and produces an actionable recommendation for campaign theme and tone — before a single die is rolled.
+
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
