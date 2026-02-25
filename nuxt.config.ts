@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   supabase: {
     url: process.env.SUPABASE_URL,
-    key: process.env.SUPABASE_ANON_KEY
+    key: process.env.SUPABASE_ANON_KEY,
+    redirect: false
   },
   test: {
     environment: 'jsdom'
