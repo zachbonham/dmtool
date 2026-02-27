@@ -16,6 +16,8 @@ context: |
 
   The GM Campaign Preference Tool solves this by giving GMs a short, structured player survey that collects preferences, scores them against four campaign archetypes, and produces an actionable recommendation for campaign theme and tone — before a single die is rolled.
 
+  Refer to the PRD ./gm-campaign-prd.pdf for more details.
+
 
 # Per-artifact rules (optional)
 # Add custom rules for specific artifacts.

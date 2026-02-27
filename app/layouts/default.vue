@@ -10,11 +10,11 @@
             <NuxtLink to="/" class="text-gray-600 hover:text-gray-800 transition-colors">
               Home
             </NuxtLink>
-            <NuxtLink to="/survey/create" class="text-gray-600 hover:text-gray-800 transition-colors">
-              Create Survey
+            <NuxtLink to="/surveys" class="text-gray-600 hover:text-gray-800 transition-colors">
+              My Surveys
             </NuxtLink>
-            <NuxtLink to="/survey/take" class="text-gray-600 hover:text-gray-800 transition-colors">
-              Take Survey
+            <NuxtLink to="/surveys/create" class="text-gray-600 hover:text-gray-800 transition-colors">
+              Create Survey
             </NuxtLink>
           </nav>
         </div>

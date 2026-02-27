@@ -7,36 +7,59 @@
       </p>
       <div class="space-x-4">
         <NuxtLink
-          to="/survey/create"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          to="/surveys/create"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-block"
         >
           Create Survey
         </NuxtLink>
         <NuxtLink
-          to="/survey/take"
-          class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          to="/surveys"
+          class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-block"
         >
-          Take Survey
+          My Surveys
         </NuxtLink>
       </div>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8">
-      <div class="bg-white p-6 rounded-lg shadow-md">
+      <Card>
         <h3 class="text-xl font-semibold text-gray-800 mb-3">For Game Masters</h3>
-        <p class="text-gray-600">
+        <p class="text-gray-600 mb-4">
           Create structured surveys to understand what your players want from the campaign.
           Get data-driven insights to guide your session zero discussions.
         </p>
-      </div>
+        <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+          <li>Easy survey creation</li>
+          <li>Shareable links for players</li>
+          <li>View responses in real-time</li>
+          <li>Archetype-based preferences</li>
+        </ul>
+      </Card>
 
-      <div class="bg-white p-6 rounded-lg shadow-md">
+      <Card>
         <h3 class="text-xl font-semibold text-gray-800 mb-3">For Players</h3>
-        <p class="text-gray-600">
+        <p class="text-gray-600 mb-4">
           Express your campaign preferences clearly. Help your GM understand what
           kind of game you want to play.
         </p>
-      </div>
+        <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+          <li>Quick to complete surveys</li>
+          <li>Easy-to-understand questions</li>
+          <li>Provides valuable feedback</li>
+          <li>No account required</li>
+        </ul>
+      </Card>
+    </div>
+
+    <div class="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-900 mb-2">How It Works</h3>
+      <ol class="list-decimal list-inside text-blue-800 space-y-2">
+        <li>GMs create a survey with their campaign preferences</li>
+        <li>GMs share the unique link with players</li>
+        <li>Players answer questions about their preferences</li>
+        <li>GMs view results to understand player expectations</li>
+        <li>Use insights to run a better session zero</li>
+      </ol>
     </div>
   </div>
 </template>
