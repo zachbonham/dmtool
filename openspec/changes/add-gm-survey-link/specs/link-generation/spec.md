@@ -5,13 +5,13 @@ The system SHALL generate unique, unguessable URLs for each survey.
 
 #### Scenario: URL created on survey save
 - **WHEN** survey is successfully created
-- **THEN** UUID-based URL is generated
-- **AND** URL follows format /survey/[uuid]
+- **THEN** a base64url-encoded GUID token is generated
+- **AND** URL follows format /survey/[token]
 - **AND** URL is stored with survey record
 
 #### Scenario: URLs are unique
 - **WHEN** multiple surveys are created
-- **THEN** each receives a different UUID
+- **THEN** each receives a different base64url-encoded GUID token
 - **AND** no URL collisions occur
 
 ### Requirement: Link Sharing Interface

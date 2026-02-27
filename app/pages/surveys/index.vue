@@ -88,6 +88,23 @@ const surveys = ref<Survey[]>([])
 const responseCounts = ref<Record<string, number>>({})
 const copiedSurveyId = ref<string | null>(null)
 
+/**
+ * Convert UUID to URL-friendly base64 token
+ */
+function uuidToToken(uuid: string): string {
+  // Remove hyphens from UUID
+  const hex = uuid.replace(/-/g, '')
+  
+  // Convert hex to bytes
+  const bytes = new Uint8Array(hex.match(/.{1,2}/g)!.map(byte => parseInt(byte, 16)))
+  
+  // Convert to base64
+  const base64 = btoa(String.fromCharCode(...bytes))
+  
+  // Make URL-safe (base64url encoding)
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+}
+
 onMounted(async () => {
   await loadSurveys()
 })
@@ -124,7 +141,8 @@ const getResponseCount = (surveyId: string) => {
 }
 
 const copySurveyLink = async (surveyId: string) => {
-  const url = `${window.location.origin}/survey/${surveyId}`
+  const token = uuidToToken(surveyId)
+  const url = `${window.location.origin}/survey/${token}`
   await navigator.clipboard.writeText(url)
   copiedSurveyId.value = surveyId
 

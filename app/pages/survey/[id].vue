@@ -68,10 +68,57 @@ const error = ref<string | null>(null)
 const survey = ref<any>(null)
 const responses = ref<Record<number, number>>({})
 
+/**
+ * Convert base64url token back to UUID
+ */
+function tokenToUuid(token: string): string {
+  try {
+    // Add padding if needed
+    let base64 = token.replace(/-/g, '+').replace(/_/g, '/')
+    while (base64.length % 4) {
+      base64 += '='
+    }
+    
+    // Decode base64 to bytes
+    const binary = atob(base64)
+    const bytes = new Uint8Array(binary.length)
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i)
+    }
+    
+    // Convert bytes to hex
+    const hex = Array.from(bytes)
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('')
+    
+    // Format as UUID
+    return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`
+  } catch (error) {
+    throw new Error('Invalid token format')
+  }
+}
+
+/**
+ * Check if a string is a valid UUID format
+ */
+function isUuid(str: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(str)
+}
+
 onMounted(async () => {
-  const surveyId = route.params.id as string
+  const param = route.params.id as string
+  let surveyId: string
 
   try {
+    // Check if param is UUID or token
+    if (isUuid(param)) {
+      // Legacy UUID format - use directly
+      surveyId = param
+    } else {
+      // New token format - convert to UUID
+      surveyId = tokenToUuid(param)
+    }
+
     const { data, error: fetchError } = await supabase
       .from('surveys')
       .select()
@@ -86,6 +133,7 @@ onMounted(async () => {
 
     survey.value = data
   } catch (err) {
+    console.error('Error loading survey:', err)
     error.value = 'An error occurred while loading the survey.'
   } finally {
     loading.value = false

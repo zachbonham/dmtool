@@ -34,7 +34,7 @@
         <div class="mb-6">
           <h2 class="text-lg font-semibold text-gray-800 mb-4">Survey Link</h2>
           <SurveyLinkShare
-            :survey-url="`${baseUrl}/survey/${survey.id}`"
+            :survey-url="`${baseUrl}/survey/${uuidToToken(survey.id)}`"
             :copied="copied"
             @copy="copySurveyLink"
           />
@@ -84,6 +84,23 @@ const responses = ref<SurveyResponse[]>([])
 const copied = ref(false)
 const baseUrl = ref(typeof window !== 'undefined' ? window.location.origin : '')
 
+/**
+ * Convert UUID to URL-friendly base64 token
+ */
+function uuidToToken(uuid: string): string {
+  // Remove hyphens from UUID
+  const hex = uuid.replace(/-/g, '')
+  
+  // Convert hex to bytes
+  const bytes = new Uint8Array(hex.match(/.{1,2}/g)!.map(byte => parseInt(byte, 16)))
+  
+  // Convert to base64
+  const base64 = btoa(String.fromCharCode(...bytes))
+  
+  // Make URL-safe (base64url encoding)
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+}
+
 onMounted(async () => {
   const surveyId = route.params.id as string
 
@@ -123,7 +140,8 @@ onMounted(async () => {
 const copySurveyLink = async () => {
   if (!survey.value) return
 
-  const url = `${baseUrl.value}/survey/${survey.value.id}`
+  const token = uuidToToken(survey.value.id)
+  const url = `${baseUrl.value}/survey/${token}`
   await navigator.clipboard.writeText(url)
   copied.value = true
 

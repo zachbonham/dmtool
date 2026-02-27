@@ -13,6 +13,23 @@ const surveySchema = z.object({
   }))
 })
 
+/**
+ * Convert UUID to URL-friendly base64 token
+ */
+function uuidToToken(uuid: string): string {
+  // Remove hyphens from UUID
+  const hex = uuid.replace(/-/g, '')
+  
+  // Convert hex to bytes
+  const bytes = Buffer.from(hex, 'hex')
+  
+  // Convert to base64url
+  return bytes.toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '')
+}
+
 export default defineEventHandler(async (event) => {
   const method = event.node.req.method
 
@@ -46,13 +63,17 @@ export default defineEventHandler(async (event) => {
         })
       }
 
-      // Generate shareable URL
-      const surveyUrl = `${getRequestURL(event).origin}/survey/${data.id}`
+      // Convert UUID to base64url token
+      const token = uuidToToken(data.id)
+
+      // Generate shareable URL with token
+      const surveyUrl = `${getRequestURL(event).origin}/survey/${token}`
 
       return {
         success: true,
         survey: data,
-        shareableUrl: surveyUrl
+        shareableUrl: surveyUrl,
+        token
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
