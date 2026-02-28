@@ -53,11 +53,11 @@
                 <span>{{ formatDate(new Date(survey.created_at)) }}</span>
               </div>
             </div>
-            <div class="flex space-x-2 ml-4">
+            <div class="flex space-x-2 ml-4" @click.stop>
               <Button
                 variant="secondary"
                 size="sm"
-                @click.stop="copySurveyLink(survey.id)"
+                @click="copySurveyLink(survey.id)"
                 :title="copiedSurveyId === survey.id ? 'Copied!' : 'Copy survey link'"
               >
                 <Icon v-if="copiedSurveyId === survey.id" name="material-symbols:check" class="w-5 h-5" />
@@ -66,7 +66,7 @@
               <Button
                 variant="outline"
                 size="sm"
-                @click.stop="viewResults(survey.id)"
+                @click="viewResults(survey.id)"
                 title="View results"
               >
                 <Icon name="material-symbols:bar-chart" class="w-5 h-5" />
@@ -74,7 +74,7 @@
               <Button
                 variant="outline"
                 size="sm"
-                @click.stop="deleteSurvey(survey.id)"
+                @click="deleteSurvey(survey.id)"
                 title="Delete survey"
               >
                 <Icon name="material-symbols:delete-outline" class="w-5 h-5" />
