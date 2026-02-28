@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 interface Props {
   surveyUrl: string
   copied?: boolean
