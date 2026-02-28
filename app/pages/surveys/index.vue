@@ -36,7 +36,12 @@
 
     <template v-else>
       <div class="space-y-4">
-        <Card v-for="survey in surveys" :key="survey.id" class="cursor-pointer hover:shadow-lg transition-shadow">
+        <Card 
+          v-for="survey in surveys" 
+          :key="survey.id" 
+          class="cursor-pointer hover:shadow-lg transition-shadow"
+          @click="viewResults(survey.id)"
+        >
           <div class="flex items-start justify-between">
             <div class="flex-1">
               <h3 class="text-lg font-semibold text-gray-800">{{ survey.title }}</h3>
@@ -52,7 +57,7 @@
               <Button
                 variant="secondary"
                 size="sm"
-                @click="copySurveyLink(survey.id)"
+                @click.stop="copySurveyLink(survey.id)"
                 :title="copiedSurveyId === survey.id ? 'Copied!' : 'Copy survey link'"
               >
                 <Icon v-if="copiedSurveyId === survey.id" name="material-symbols:check" class="w-5 h-5" />
@@ -61,7 +66,7 @@
               <Button
                 variant="outline"
                 size="sm"
-                @click="viewResults(survey.id)"
+                @click.stop="viewResults(survey.id)"
                 title="View results"
               >
                 <Icon name="material-symbols:bar-chart" class="w-5 h-5" />
@@ -69,7 +74,7 @@
               <Button
                 variant="outline"
                 size="sm"
-                @click="deleteSurvey(survey.id)"
+                @click.stop="deleteSurvey(survey.id)"
                 title="Delete survey"
               >
                 <Icon name="material-symbols:delete-outline" class="w-5 h-5" />
