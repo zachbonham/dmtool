@@ -49,6 +49,16 @@ export const uuidToToken = (uuid: string): string => {
  * Convert base64url token back to UUID
  */
 export const tokenToUuid = (token: string): string => {
+  // Validate token
+  if (!token || token.length === 0) {
+    throw new Error('Invalid token format')
+  }
+  
+  // Base64url tokens should only contain alphanumeric, -, and _
+  if (!/^[A-Za-z0-9_-]+$/.test(token)) {
+    throw new Error('Invalid token format')
+  }
+  
   try {
     // Add padding if needed
     let base64 = token.replace(/-/g, '+').replace(/_/g, '/')
