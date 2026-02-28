@@ -5,20 +5,7 @@
       <p class="text-xl text-gray-600 mb-8">
         Help your gaming group align on campaign expectations before session zero
       </p>
-      <!-- <div class="space-x-4">
-        <NuxtLink
-          to="/surveys/create"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-block"
-        >
-          Create Survey
-        </NuxtLink>
-        <NuxtLink
-          to="/surveys"
-          class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors inline-block"
-        >
-          My Surveys
-        </NuxtLink>
-      </div> -->
+    
     </div>
 
     <div class="grid md:grid-cols-2 gap-8">
