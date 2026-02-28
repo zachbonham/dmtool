@@ -52,22 +52,26 @@
                 variant="secondary"
                 size="sm"
                 @click="copySurveyLink(survey.id)"
+                :title="copiedSurveyId === survey.id ? 'Copied!' : 'Copy survey link'"
               >
-                {{ copiedSurveyId === survey.id ? '✓ Copied' : 'Copy Link' }}
+                <Icon v-if="copiedSurveyId === survey.id" name="material-symbols:check" class="w-5 h-5" />
+                <Icon v-else name="material-symbols:content-copy-outline" class="w-5 h-5" />
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 @click="viewResults(survey.id)"
+                title="View results"
               >
-                Results
+                <Icon name="material-symbols:bar-chart" class="w-5 h-5" />
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 @click="deleteSurvey(survey.id)"
+                title="Delete survey"
               >
-                Delete
+                <Icon name="material-symbols:delete-outline" class="w-5 h-5" />
               </Button>
             </div>
           </div>

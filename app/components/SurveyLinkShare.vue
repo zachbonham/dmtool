@@ -26,8 +26,10 @@ defineEmits<{
       variant="primary"
       size="sm"
       @click="$emit('copy')"
+      :title="copied ? 'Copied!' : 'Copy survey link'"
     >
-      {{ copied ? '✓ Copied' : 'Copy Link' }}
+      <Icon v-if="copied" name="material-symbols:check" class="w-5 h-5" />
+      <Icon v-else name="material-symbols:content-copy-outline" class="w-5 h-5" />
     </Button>
   </div>
 </template>
