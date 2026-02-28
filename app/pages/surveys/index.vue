@@ -4,9 +4,10 @@
       <h1 class="text-2xl font-bold text-gray-800">My Surveys</h1>
       <NuxtLink
         to="/surveys/create"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
       >
-        Create New Survey
+        <Icon name="material-symbols:add" class="w-5 h-5" />
+        New Survey
       </NuxtLink>
     </div>
 

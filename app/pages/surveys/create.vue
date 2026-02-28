@@ -57,7 +57,7 @@
 
         <div class="flex space-x-4">
           <Button type="submit" :disabled="loading" variant="primary">
-            {{ loading ? 'Creating Survey...' : 'Create Survey' }}
+            {{ loading ? 'Creating Survey...' : 'Create' }}
           </Button>
           <Button variant="secondary" @click="$router.back()">
             Cancel
